@@ -1,0 +1,70 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+struct student
+{
+    int val;
+    struct student * next;
+}*head=NULL;
+void insert(int val)
+{
+   struct student *new,*current;
+   new=(struct student*)malloc(sizeof(struct student)); 
+   new->val=val;
+   if(head==NULL)
+   {
+       head=new;
+   }
+   else {
+       current=head;
+    while(current->next!=NULL)
+    {
+        current=current->next;
+    }
+    current->next=new;
+   }
+}
+void display()
+{
+    struct student *current;
+    current=head;
+    if(head==NULL)
+    {
+        printf("null");
+    }
+    while(current->next!=head)
+    {
+        printf("%d-> ",current->val);
+        current=current->next;
+    }
+    printf("%d",current->val);
+void delete()
+{
+struct student* current;
+current=head;
+while(current->next->next!=NULL)
+{
+current=current->next;
+}
+current->next=NULL;
+}
+int main() {
+    int n,x,d;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+       scanf("%d",&x); 
+       insert(x);
+    }
+  scanf("%d",&d);
+ for(int i=0;i<d;i++)
+{
+delete();
+}
+   display();
+    return 0;
+}
